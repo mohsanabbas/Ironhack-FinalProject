@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
-    "client":"npm start --prefix client",
-    "dev":"concurrently \"npm run server\" \"npm run client\""
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Mohsan Abbas",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "express-formidable": "^1.2.0",
+    "http-proxy-middleware": "^0.19.1",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.22.2",
     "mongoose": "^5.3.14",
