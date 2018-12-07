@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FormField from '../utils/Form/formfield';
+import { update } from '../utils/Form/formActions.js';
 
 class Login extends Component {
+  //form state
   state = {
     formError: false,
     formSuccess: '',
@@ -17,13 +19,13 @@ class Login extends Component {
         },
         validation: {
           required: true,
-          email: true
+            email: true
         },
         valid: false,
         touched: false,
         validationMessage: ''
       },
-      Password: {
+      password: {
         element: 'input',
         value: '',
         config: {
@@ -40,26 +42,36 @@ class Login extends Component {
       }
     }
   };
-  updateForm = () => {
-
-  }
-  submitForm = () => {
-
+  //  update form event .. referencing to update function
+  updateForm = element => {
+    const newFormdata = update(element, this.state.formdata, 'login');
+    this.setState({
+      formError: false,
+      formdata: newFormdata
+    });
   };
+  // submit event
+  submitForm = () => {};
 
   render() {
     return (
       <div className="signin_wrapper">
-        <form onSubmit={event => this.submitForm(event)} >
-        <FormField
-        id ={'email'}
-        formdata ={this.state.formdata.email}
-        change ={(element)=>this.updateForm(element)} 
-        />
-        </form>
+        <form onSubmit={event => this.submitForm(event)}>
+          <FormField
+            id={'email'}
+            formdata={this.state.formdata.email}
+            change={element => this.updateForm(element)}
+          />
 
+          <FormField
+            id={'password'}
+            formdata={this.state.formdata.password}
+            change={element => this.updateForm(element)}
+          />
+        </form>
       </div>
     );
   }
 }
+
 export default connect()(Login);

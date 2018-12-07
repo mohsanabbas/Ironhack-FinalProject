@@ -10,8 +10,7 @@ const RegisterLogin = () => {
           <div className="left">
             <h1>GET AN ACCOUNT NOW</h1>
             <p>
-              Save credit card details for faster shopping Manage your order
-              history Gain access to your Wishlist
+            Creating an account is easy and has many advantages. Enjoy the benefits of having your personal details saved, and being able to check out with one click.
             </p>
             <MyButton
               type="default"
