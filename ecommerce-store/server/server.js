@@ -163,7 +163,7 @@ app.post('/api/users/register', (req, res) => {
     });
     res.status(200).json({
       success: true,
-      // userdata: doc,
+      userdata: doc,
     });
   });
 });
