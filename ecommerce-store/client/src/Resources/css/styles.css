@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    width:85%;
+    width:75%;
     margin: 0 auto;
 }
 .page_container {
@@ -19,7 +19,7 @@ body {
 }
 
 .page_wrapper {
-    padding-top: 85px;
+    padding-top: 5px;
 }
 
 a {

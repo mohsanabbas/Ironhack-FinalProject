@@ -1,3 +1,5 @@
+
+
 export const validate = (element, formdata = []) => {
     let error = [true, ''];
     // email validation 
@@ -5,6 +7,13 @@ export const validate = (element, formdata = []) => {
         let regEx =/\S+@\S+\.\S+/
         const valid = regEx.test(element.value);
         const message = `${!valid ? 'This must be a valid email' :''}`;
+        error = !valid ? [valid, message] : error;
+
+    }
+    // verify password validation
+    if(element.validation.confirm){
+        const valid = element.value.trim() === formdata[element.validation.confirm].value;
+        const message = `${!valid ? 'Password do not match' :''}`;
         error = !valid ? [valid, message] : error;
 
     }
@@ -39,7 +48,10 @@ export const update = (element, formdata, formName) => {
 export const generateData = (formdata, formName) => {
     let dataToSubmit = {}
     for (let key in formdata) {
-        dataToSubmit[key] = formdata[key].value;
+        if(key !== 'confirmPassword'){
+
+            dataToSubmit[key] = formdata[key].value;
+        }
     }
     return dataToSubmit;
 }

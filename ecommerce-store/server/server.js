@@ -143,8 +143,8 @@ app.get('/api/users/auth', auth, (req, res) => {
     isAdmin: req.user.role === 0 ? false : true,
     isAuth: true,
     email: req.user.email,
-    firstName: req.user.firstName,
-    lastName: req.user.lastName,
+    name: req.user.name,
+    lastname: req.user.lastname,
     role: req.user.role,
     cart: req.user.cart,
     history: req.user.history,
@@ -189,7 +189,7 @@ app.post('/api/users/login', (req, res) => {
         if (err) return res.status(400).send(err);
         res.cookie('x_auth', user.token).status(200).json({
           loginSuccess: true,
-          messsage: `Welcome ${user.firstName}`
+          messsage: `Welcome ${user.name}`
         });
       });
     });
