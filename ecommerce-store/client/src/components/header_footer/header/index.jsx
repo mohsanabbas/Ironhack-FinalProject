@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter  } from 'react-router-dom'; 
 import { connect } from 'react-redux'; 
+import { logoutUser } from '../../../actions/user_actions';
+
 
 class Header extends Component {
   state = {
@@ -47,11 +49,39 @@ class Header extends Component {
 
     ]
   }
-  defaultlink =(item,i)=>(
-    <Link to ={item.linkTo} key={i}>
-    {item.name}
-    </Link>
-  )
+  logoutHandler = () => {
+    this.props.dispatch(logoutUser()).then(response =>{
+        if(response.payload.success){
+            this.props.history.push('/')
+        }
+    })
+}
+  cartLink = (item,i) => {
+    const user = this.props.user.userData;
+
+    return (
+        <div className="cart_link" key={i}>
+            <span>{user.cart ? user.cart.length:0}</span>
+            <Link to={item.linkTo}>
+                {item.name}
+            </Link>
+        </div>
+    )
+}  
+defaultLink = (item,i) => (
+  item.name === 'Log out' ?
+      <div className="log_out_link"
+          key={i}
+          onClick={()=> this.logoutHandler()}
+      >
+          {item.name}
+      </div>
+
+  :
+  <Link to={item.linkTo} key={i}>
+      {item.name}
+  </Link>
+)
 
   
   showLinks = (type) => {
@@ -70,7 +100,12 @@ class Header extends Component {
       });
     }
     return list.map((item,i)=>{
-      return this.defaultlink(item,i)  
+      if(item.name !=='My Cart'){
+        return this.defaultLink(item,i)  
+
+      } else{
+        return this.cartLink(item,i)  
+      }
     })
 
 
@@ -100,4 +135,4 @@ function mapStateToProps(state){
      user: state.user
   }
 } 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));
