@@ -19,6 +19,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "react-slick": "^0.23.2",
+    "react-slick-slider": "^0.15.10",
     "redux": "^4.0.1",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0"
