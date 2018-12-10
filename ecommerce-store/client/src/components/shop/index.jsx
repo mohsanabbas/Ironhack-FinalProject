@@ -9,6 +9,9 @@ class Shop extends Component {
     this.props.dispatch(getBrands());
     this.props.dispatch(getDetails());
   }
+  handleFilters = () => {
+
+  }
 
   render() {
     const products = this.props.products;
@@ -17,7 +20,17 @@ class Shop extends Component {
         <PageTop title="Search what interests you " />
         <div className="container">
           <div className="shop_wrapper">
-            <div className="left">left</div>
+            <div className="left">
+            <CollapseCheckbox
+            initState = {true} 
+            title = 'brands'
+            list ={products.brands}
+            handleFilters = {(filters)=> this.handleFilters(filters,'brand')}
+            
+            />
+            
+            
+            </div>
             <div className="right">rigth</div>
           </div>
         </div>
