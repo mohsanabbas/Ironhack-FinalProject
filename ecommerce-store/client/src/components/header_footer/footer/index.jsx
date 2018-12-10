@@ -5,6 +5,11 @@ import React from 'react';
 // import { faClock } from '@fortawesome/fontawesome-free/faClock';
 // import {faEnvelope } from '@fortawesome/fontawesome-free/faEnvelope';
 const Footer = () => {
+  const getTheDate =()=>{
+      
+    return new Date().getFullYear(); 
+
+  }
   return (
     <footer className='bck_b_dark'>
       <div className='container'>
@@ -46,6 +51,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='copyright'>
+        Developed by Mohsan Abbas &copy; Copyright {getTheDate()}
       </div>
     </footer>
   );

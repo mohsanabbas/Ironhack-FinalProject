@@ -6,8 +6,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 mongoose.connect(
-  process.env.DATABASE,
-  {useNewUrlParser: true}
+    process.env.DATABASE, {
+      useNewUrlParser: true
+    }
   ).then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`,
@@ -40,15 +41,17 @@ const admin = require('./middleware/admin')
 // search articles by new arrival
 // sortby created at note we have time stamp in database for each product we created 
 app.get('/api/product/articles', (req, res) => {
-  let order = req.query.order ? req.query.order: 'asc';
-  let sortBy = req.query.sortBy ? req.query.sortBy: '_id';
+  let order = req.query.order ? req.query.order : 'asc';
+  let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
   let limit = req.query.limit ? parseInt(req.query.limit) : 100;
   Product.find().
   populate('brand').
   populate('detail').
-  sort([[sortBy,order]]).
+  sort([
+    [sortBy, order]
+  ]).
   limit(limit).
-  exec((err,articles) => {
+  exec((err, articles) => {
     if (err) return res.status(400).send(err);
     res.send(articles);
 
@@ -56,31 +59,38 @@ app.get('/api/product/articles', (req, res) => {
 })
 
 // search articles 
-app.get('/api/product/articles_by_id',(req, res)=>{
-const type = req.query.type;
-let items = req.query.id;
+app.get('/api/product/articles_by_id', (req, res) => {
+  const type = req.query.type;
+  let items = req.query.id;
 
-if(type === "array"){
-  let ids = req.query.id.split(',');
-  items =[];
-  items = ids.map(el=>{
-    return mongoose.Types.ObjectId(el);
+  if (type === "array") {
+    let ids = req.query.id.split(',');
+    items = [];
+    items = ids.map(el => {
+      return mongoose.Types.ObjectId(el);
 
-  });
-};
-Product.find({'_id':{ $in:items }}).
-populate('brand').
-populate('detail')
-.exec((err,docs)=>{
-  return res.status(200).send(docs)
+    });
+  };
+  Product.find({
+    '_id': {
+      $in: items
+    }
+  }).
+  populate('brand').
+  populate('detail')
+    .exec((err, docs) => {
+      return res.status(200).send(docs)
+    })
 })
-})
-app.post('/api/product/article',auth,admin,(req,res) =>{
+app.post('/api/product/article', auth, admin, (req, res) => {
   const newProduct = new Product(req.body);
-  newProduct.save((err,doc)=>{
-    if (err) return res.json({success: false, err });
+  newProduct.save((err, doc) => {
+    if (err) return res.json({
+      success: false,
+      err
+    });
     res.status(200).json({
-      success:true,
+      success: true,
       article: doc,
     });
   });
@@ -90,22 +100,25 @@ app.post('/api/product/article',auth,admin,(req,res) =>{
 //   Suit's Detail 
 //----------------
 // admin and authorise users can add suit's details
-app.post('/api/product/detail',auth,admin,(req,res) =>{
+app.post('/api/product/detail', auth, admin, (req, res) => {
   const suitDetail = new Detail(req.body);
-  suitDetail.save((err,doc)=>{
-    if (err) return res.json({success: false, err });
+  suitDetail.save((err, doc) => {
+    if (err) return res.json({
+      success: false,
+      err
+    });
     res.status(200).json({
-      success:true,
+      success: true,
       detail: doc,
     });
   });
 });
 
-app.get('/api/product/details',(req, res) => {
-  Detail.find({},(err,details)=>{
+app.get('/api/product/details', (req, res) => {
+  Detail.find({}, (err, details) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(details);
-});
+  });
 });
 
 // ---------
@@ -113,10 +126,13 @@ app.get('/api/product/details',(req, res) => {
 // -------- 
 // Admin or authorise user can Add new brands
 
-app.post('/api/product/brand',auth,admin,(req,res) => {
+app.post('/api/product/brand', auth, admin, (req, res) => {
   const newBrand = new Brand(req.body);
   newBrand.save((err, doc) => {
-    if (err) return res.json({success: false,err});
+    if (err) return res.json({
+      success: false,
+      err
+    });
     res.status(200).json({
       success: true,
       brand: doc,
@@ -126,11 +142,11 @@ app.post('/api/product/brand',auth,admin,(req,res) => {
 
 // geting available brands
 
-app.get('/api/product/brands',(req, res) => {
-  Brand.find({},(err,brands)=>{
+app.get('/api/product/brands', (req, res) => {
+  Brand.find({}, (err, brands) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(brands);
-});
+  });
 });
 
 
@@ -196,12 +212,17 @@ app.post('/api/users/login', (req, res) => {
   });
 });
 
-app.get('/api/users/logout', auth,(req,res) => {
-  User.findOneAndUpdate(
-    { _id: req.user._id },
-    { token: '' },
-    (err, doc ) => {
-      if(err) return res.json({ success: false, err });
+app.get('/api/users/logout', auth, (req, res) => {
+  User.findOneAndUpdate({
+      _id: req.user._id
+    }, {
+      token: ''
+    },
+    (err, doc) => {
+      if (err) return res.json({
+        success: false,
+        err
+      });
       return res.status(200).send({
         success: true,
       })

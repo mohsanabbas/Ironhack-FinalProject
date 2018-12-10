@@ -9,6 +9,11 @@ body {
     width:75%;
     margin: 0 auto;
 }
+.button_container{
+    width:70%;
+    margin: 0 auto;
+
+}
 .page_container {
     min-height: 75vh;
     padding-top: 85px;
@@ -204,8 +209,8 @@ select {
     text-align: center;
     font-size: 14px;
     text-transform: uppercase;
-    color: #c3c0b1;
-    background: #f8f8f8;
+    color: #eeeeee;
+    background: #000000;
     transition: all 200ms ease-in;
     cursor: pointer;
 }
@@ -250,7 +255,7 @@ header {
     position: fixed;
     z-index: 999;
     width: 100%;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid purple;
 }
 
 header .logo {
@@ -275,21 +280,22 @@ header .container .left{
 
 header .container .right{
    flex-grow: 1;
-   border-left: 1px solid orange;
-   border-right: 1px solid orange;
+   border-left: 2px solid orange;
+   border-right: 2px solid orange;
+   border-radius: 15px; 
 }
 header .container .right .top ,
 header .container .right .bottom {
     text-transform: uppercase;
     font-weight: 700;
     text-align: right;
-    color:#ffffff;
+    color: #fff;
     font-size: 15px;
-    padding: 10px 20px;
+    padding: 10px 50px;
 }
 
 header .container .right .top {
-    color:#c9c9c9;
+    color:#fff;
     border-bottom: 1px solid orange;
 }
 
@@ -324,10 +330,11 @@ header .log_out_link {
 footer .logo {
     text-align: center;
     font-family: 'Monoton', cursive;
-    color: #ffffff;
+    color: goldenrod;
     font-size: 40px;
     padding: 11px 0px;
     border-bottom: 1px solid #4d4d4d;
+    margin-bottom: 50px;
 }
 
 footer .wrapper {
@@ -477,7 +484,6 @@ footer .business_nfo .nfo {
     background-size: cover !important;
     border: 1px solid #f0f0f0;
 }
-
 
 .card_item_wrapper .tags {
     position: relative;
@@ -741,7 +747,13 @@ footer .business_nfo .nfo {
     padding: 30px;
     min-height: 430px;
 }
+.copyright{
+    width: 60%;
+    font-family: 'Montserrat', sans-serif;
+    text-align: right;
 
+
+}
 .register_login_container .left,
 .register_login_container .right {
     flex:1
@@ -899,3 +911,4 @@ footer .business_nfo .nfo {
     background-position: center center !important;
     border: 1px solid #eaeaea;
 }
+
