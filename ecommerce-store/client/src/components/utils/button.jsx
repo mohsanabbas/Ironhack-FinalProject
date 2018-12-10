@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import faShoppingBag from '@fortawesome/fontawesome-free-solid/faShoppingBag';
 
 const MyButton = props => {
   const buttons = () => {
@@ -16,6 +18,18 @@ const MyButton = props => {
           </Link>
         
 
+        break;
+        case 'bag_link':
+        template = 
+        <div className = 'bag_link'
+        onClick={()=>{
+          props.runAction();
+        }}
+        >
+        < FontAwesomeIcon
+        icon ={faShoppingBag}
+        />
+        </div>
         break;
       default:
         template = '';
