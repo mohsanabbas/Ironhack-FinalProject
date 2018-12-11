@@ -3,17 +3,39 @@ import PageTop from '../utils/page_top';
 import { connect } from 'react-redux';
 import { getBrands, getDetails } from '../../actions/product_actions';
 import CollapseCheckbox from '../utils/collapseCheckbox';
+import {color} from  '../utils/Form/color.js';
 
 class Shop extends Component {
+    state = {
+        grid: '',
+        limit: 6,
+        skip:0,
+        filters:{
+            brand:[],
+            detail:[],
+            color:[],
+            price:[]
+        }
+     }
+
+
   componentDidMount() {
     this.props.dispatch(getBrands());
     this.props.dispatch(getDetails());
   }
-  handleFilters = () => {
+  handleFilters = (filters, category) => {
+    //   console.log(filters);
+    const newFilters = {...this.state.filters}
+    newFilters[category] =filters;
+
+    this.setState({
+        filters: newFilters
+    })
 
   }
 
   render() {
+    //   console.log(this.state.filters);
     const products = this.props.products;
     return (
       <div>
@@ -26,6 +48,20 @@ class Shop extends Component {
             title = 'brands'
             list ={products.brands}
             handleFilters = {(filters)=> this.handleFilters(filters,'brand')}
+            
+            />
+            <CollapseCheckbox
+            initState = {false} 
+            title = 'color'
+            list ={color}
+            handleFilters = {(filters)=> this.handleFilters(filters,'color')}
+            
+            />
+            <CollapseCheckbox
+            initState = {true} 
+            title = 'Fits'
+            list ={products.detail}
+            handleFilters = {(filters)=> this.handleFilters(filters,'details')}
             
             />
             
