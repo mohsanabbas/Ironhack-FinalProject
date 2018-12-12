@@ -9,6 +9,10 @@ import {
 import CollapseCheckbox from '../utils/collapseCheckbox';
 import { color, price } from '../utils/Form/color.js';
 import CollapseRadio from '../utils/collapseRadio';
+import LoadMoreCards from  './loadmoreCards';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import faBars from '@fortawesome/fontawesome-free-solid/faBars';
+import faTh from '@fortawesome/fontawesome-free-solid/faTh';
 
 class Shop extends Component {
   state = {
@@ -68,6 +72,28 @@ class Shop extends Component {
       })
     })
   };
+
+
+  loadMoreCards = ()=>{
+     let skip =this.state.skip +this.state.limit;
+     this.props.dispatch(getProductsToShop(
+       skip,
+       this.state.limit,
+       this.state.filters,
+       this.props.products.toShop
+       
+     )).then(()=>{
+       this.setState({
+         skip
+       })
+     })
+  }
+
+  handleGrid=()=>{
+    this.setState({
+      grid:!this.state.grid ? 'grid_bars' : ''
+    })
+  }
   render() {
     // console.log(this.state.filters);
     const products = this.props.products;
@@ -104,7 +130,36 @@ class Shop extends Component {
                 handleFilters={filters => this.handleFilters(filters, 'price')}
               />
             </div>
-            <div className="right">rigth</div>
+            <div className="right">
+            <div className ='shop_options'>
+            <div className ='shop_grids clear'>
+            <div
+            className={`grid_btn ${this.state.grid ?'' : 'active'}`}
+            onClick ={()=>this.handleGrid()}
+            >
+            <FontAwesomeIcon icon ={faTh}/>
+            </div>
+            <div
+            className={`grid_btn ${!this.state.grid ?'' : 'active'}`}
+            onClick ={()=>this.handleGrid()}
+            >
+            <FontAwesomeIcon icon ={faBars}/>
+            </div>
+
+            </div>
+
+            </div>
+            <div>
+              <LoadMoreCards 
+              grid ={this.state.grid}
+              limit ={this.state.limit}
+              size ={products.toShopSize}
+              products={products.toShop}
+              LoadMore ={()=>this.loadMoreCards()}
+              />
+            </div>
+            
+            </div>
           </div>
         </div>
       </div>

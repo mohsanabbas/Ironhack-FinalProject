@@ -35,8 +35,12 @@ class Card extends Component {
             <div className="name">{props.name}</div>
             <div className="name">${props.price}</div>
           </div>
-        </div>
-        {props.grid ? <div className="description">kshdjshdsdjshd</div> : null}
+        
+        {props.grid ? <div className="description">
+        <p>
+          {props.description}
+        </p>
+        </div> : null}
         <div className="actions">
           <div className="button_wrapp">
             <MyButton
@@ -56,6 +60,7 @@ class Card extends Component {
                 console.log('added to cart');
               }}
             />
+            </div>
           </div>
         </div>
       </div>
