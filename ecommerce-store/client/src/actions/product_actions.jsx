@@ -6,7 +6,9 @@ import {
   GET_DETAILS,
   GET_PRODUCTS_TO_SHOP,
   ADD_PRODUCT,
-  CLEAR_PRODUCT
+  CLEAR_PRODUCT,
+  ADD_DETAIL,
+  ADD_BRAND
 } from './types';
 
 import { PRODUCT_SERVER } from '../components/utils/gvar';
@@ -68,6 +70,42 @@ export function getBrands() {
     type: GET_BRANDS,
     payload: request
   };
+}
+
+export function addBrand(dataToSubmit, existingBrands){
+  const request = axios.post(`${PRODUCT_SERVER}/brand`,dataToSubmit)
+  .then(response=>{
+      let brands = [
+          ...existingBrands,
+          response.data.brand
+      ];
+      return {
+          success: response.data.success,
+          brands
+      }
+  });
+  return {
+      type: ADD_BRAND,
+      payload: request
+  }
+}
+
+export function addDetail(dataToSubmit, existingDetail){
+  const request = axios.post(`${PRODUCT_SERVER}/detail`,dataToSubmit)
+  .then(response=>{
+      let detail = [
+          ...existingDetail,
+          response.data.detail
+      ];
+      return {
+          success: response.data.success,
+          detail
+      }
+  });
+  return {
+      type: ADD_DETAIL,
+      payload: request
+  }
 }
 // get details of a product
 export function getDetails() {
