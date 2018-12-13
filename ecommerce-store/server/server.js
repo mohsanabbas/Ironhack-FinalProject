@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const formidable = require('express-formidable');
+const cloudinary = require('cloudinary');
 
 const app = express();
 mongoose.connect(
@@ -23,6 +25,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
+})
 // Models
 const User = require('./models/user');
 const Brand = require('./models/brand');
@@ -56,6 +64,7 @@ app.post('/api/product/shop', (req, res) => {
 
     }
   }
+  findArgs['publish']=true;
   Product.find(findArgs).
   populate('brand').
   populate('detail').
@@ -270,6 +279,28 @@ app.get('/api/users/logout', auth, (req, res) => {
     }
   )
 
+})
+
+app.post('/api/users/uploadimage',auth,admin,formidable(),(req,res)=>{
+  cloudinary.uploader.upload(req.files.file.path,(result)=>{
+      console.log(result);
+      res.status(200).send({
+          public_id: result.public_id,
+          url: result.url
+      })
+  },{
+      public_id: `${Date.now()}`,
+      resource_type: 'auto'
+  })
+})
+
+app.get('/api/users/removeimage',auth,admin,(req,res)=>{
+  let image_id = req.query.public_id;
+
+  cloudinary.uploader.destroy(image_id,(error,result)=>{
+      if(error) return res.json({succes:false,error});
+      res.status(200).send('ok');
+  })
 })
 
 const port = process.env.PORT || 8000;

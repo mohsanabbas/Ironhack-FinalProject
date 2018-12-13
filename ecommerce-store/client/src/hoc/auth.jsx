@@ -11,7 +11,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
     componentDidMount(){
       this.props.dispatch(auth()).then(response =>{
         let user = this.props.user.userData;
-        console.log(user);
+        // console.log(user);
         if(!user.isAuth){
           if (reload) {
             this.props.history.push('/login')

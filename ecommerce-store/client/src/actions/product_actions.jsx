@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { GET_PRODUCTS_BY_SELL, GET_PRODUCTS_BY_ARRIVAL, GET_BRANDS, GET_DETAILS, GET_PRODUCTS_TO_SHOP } from './types';
+import {
+  GET_PRODUCTS_BY_SELL,
+  GET_PRODUCTS_BY_ARRIVAL,
+  GET_BRANDS,
+  GET_DETAILS,
+  GET_PRODUCTS_TO_SHOP,
+  ADD_PRODUCT,
+  CLEAR_PRODUCT
+} from './types';
 
 import { PRODUCT_SERVER } from '../components/utils/gvar';
 
@@ -25,48 +33,67 @@ export function getProductsByArrival() {
     payload: request
   };
 }
-export function getProductsToShop(skip,limit,filters=[],previousState = []){
+export function getProductsToShop(
+  skip,
+  limit,
+  filters = [],
+  previousState = []
+) {
   const data = {
     limit,
     skip,
     filters
-  }
-  const request = axios.post(`${PRODUCT_SERVER}/shop`,data)
-  .then(response => {
-    let newState =[
-      ...previousState,
-      ...response.data.articles
-    ]
+  };
+  const request = axios.post(`${PRODUCT_SERVER}/shop`, data).then(response => {
+    let newState = [...previousState, ...response.data.articles];
     return {
       size: response.data.size,
       articles: newState
-    }
-  })
+    };
+  });
   return {
-    type : GET_PRODUCTS_TO_SHOP,
-    payload :request
-  }
-
-
+    type: GET_PRODUCTS_TO_SHOP,
+    payload: request
+  };
 }
 // ---------------------
 //  categories of Product
 // ---------------------
-// get brands from api
+// get brands from database
 export function getBrands() {
-  const request = axios.get(`${PRODUCT_SERVER}/brands`)
-  .then(response => response.data);
+  const request = axios
+    .get(`${PRODUCT_SERVER}/brands`)
+    .then(response => response.data);
   return {
     type: GET_BRANDS,
     payload: request
-  }
+  };
 }
 // get details of a product
 export function getDetails() {
-  const request = axios.get(`${PRODUCT_SERVER}/details`)
-  .then(response => response.data);
+  const request = axios
+    .get(`${PRODUCT_SERVER}/details`)
+    .then(response => response.data);
   return {
     type: GET_DETAILS,
     payload: request
-  }
+  };
+}
+
+export function addProduct(datatoSubmit) {
+  const request = axios
+    .post(`${PRODUCT_SERVER}/article`, datatoSubmit)
+    .then(response => response.data);
+
+  return {
+    type: ADD_PRODUCT,
+    payload: request
+  };
+}
+
+export function clearProduct() {
+  return {
+    type: CLEAR_PRODUCT,
+    payload: ''
+  };
 }
