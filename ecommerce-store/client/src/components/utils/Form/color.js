@@ -52,4 +52,7 @@ const price = [{
     }
 
 ];
-export {color,price}
+export {
+    color,
+    price
+}

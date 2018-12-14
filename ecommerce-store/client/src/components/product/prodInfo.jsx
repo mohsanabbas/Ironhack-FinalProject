@@ -43,35 +43,34 @@ const ProdInfo = props => {
     </div>
   );
 
-  const showProdActions = (detail) => (
-      <div className ='product_actions'>
-      <div className = 'price'>$ {detail.price} </div>
-      <div className ='cart'>
-      <MyButton
-      type ='add_to_cart_link'
-      runAction={()=>{
-          console.log('Added to cart')
-      }}
-      />
-
+  const showProdActions = detail => (
+    <div className="product_actions">
+      <div className="price">$ {detail.price} </div>
+      <div className="cart">
+        <MyButton
+          type="add_to_cart_link"
+          runAction={() => {
+            console.log('Added to cart');
+          }}
+        />
       </div>
-      </div>
-
-  )
-  const showProdSpecifications = (detail) =>(
-      <div className ='product_specifications'>
+    </div>
+  );
+  const showProdSpecifications = detail => (
+    <div className="product_specifications">
       <h2>Specification</h2>
       <div>
-          <div className ='item'>
-          <strong>Color: </strong>{detail.color}
-          </div>
-          <div className ='item'>
-          <strong>Fits: </strong>{detail.detail.name}
-          </div>
+        <div className="item">
+          <strong>Color: </strong>
+          {detail.color}
+        </div>
+        <div className="item">
+          <strong>Fits: </strong>
+          {detail.detail.name}
+        </div>
       </div>
-
-      </div>
-  )
+    </div>
+  );
 
   const detail = props.detail;
   return (

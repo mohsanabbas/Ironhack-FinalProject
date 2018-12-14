@@ -15,26 +15,24 @@ import {
 
 import { PRODUCT_SERVER } from '../components/utils/gvar';
 
-export function getProductDetail(id){
-
-  const request = axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${id}&type=single`)
-  .then(response=>{
-      return response.data[0]
-  });
+export function getProductDetail(id) {
+  const request = axios
+    .get(`${PRODUCT_SERVER}/articles_by_id?id=${id}&type=single`)
+    .then(response => {
+      return response.data[0];
+    });
 
   return {
-      type: GET_PRODUCT_DETAIL,
-      payload: request
-  }
-
+    type: GET_PRODUCT_DETAIL,
+    payload: request
+  };
 }
 
-
-export function clearProductDetail(){
+export function clearProductDetail() {
   return {
-      type: CLEAR_PRODUCT_DETAIL,
-      payload:''
-  }
+    type: CLEAR_PRODUCT_DETAIL,
+    payload: ''
+  };
 }
 
 export function getProductsBySell() {
@@ -96,40 +94,36 @@ export function getBrands() {
   };
 }
 
-export function addBrand(dataToSubmit, existingBrands){
-  const request = axios.post(`${PRODUCT_SERVER}/brand`,dataToSubmit)
-  .then(response=>{
-      let brands = [
-          ...existingBrands,
-          response.data.brand
-      ];
+export function addBrand(dataToSubmit, existingBrands) {
+  const request = axios
+    .post(`${PRODUCT_SERVER}/brand`, dataToSubmit)
+    .then(response => {
+      let brands = [...existingBrands, response.data.brand];
       return {
-          success: response.data.success,
-          brands
-      }
-  });
+        success: response.data.success,
+        brands
+      };
+    });
   return {
-      type: ADD_BRAND,
-      payload: request
-  }
+    type: ADD_BRAND,
+    payload: request
+  };
 }
 
-export function addDetail(dataToSubmit, existingDetail){
-  const request = axios.post(`${PRODUCT_SERVER}/detail`,dataToSubmit)
-  .then(response=>{
-      let detail = [
-          ...existingDetail,
-          response.data.detail
-      ];
+export function addDetail(dataToSubmit, existingDetail) {
+  const request = axios
+    .post(`${PRODUCT_SERVER}/detail`, dataToSubmit)
+    .then(response => {
+      let detail = [...existingDetail, response.data.detail];
       return {
-          success: response.data.success,
-          detail
-      }
-  });
+        success: response.data.success,
+        detail
+      };
+    });
   return {
-      type: ADD_DETAIL,
-      payload: request
-  }
+    type: ADD_DETAIL,
+    payload: request
+  };
 }
 // get details of a product
 export function getDetails() {

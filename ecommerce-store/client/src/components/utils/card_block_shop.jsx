@@ -1,13 +1,12 @@
 import React from 'react';
 import Card from '../utils/card';
 const CardBlockShop = props => {
-  const renderCards = () => (
+  const renderCards = () =>
     props.list
       ? props.list.map(card => (
           <Card key={card._id} {...card} grid={props.grid} />
         ))
-      : null
-  );
+      : null;
   return (
     <div className="card_block_shop">
       <div>

@@ -4,7 +4,7 @@ const CardBlock = props => {
   const renderCards = () =>
     props.list
       ? props.list.map((card, idx) => <Card key={idx} {...card} />)
-      :null;
+      : null;
 
   return (
     <div className="card_block">

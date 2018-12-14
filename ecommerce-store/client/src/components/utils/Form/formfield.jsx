@@ -18,12 +18,9 @@ const Formfield = ({ formdata, change, id }) => {
       case 'input':
         formTemplate = (
           <div className="formBlock">
-          {
-            formdata.showlabel ?
-            <div className='label_inputs'>{formdata.config.label}</div>
-            
-            :null
-          }
+            {formdata.showlabel ? (
+              <div className="label_inputs">{formdata.config.label}</div>
+            ) : null}
             <input
               {...formdata.config}
               value={formdata.value}
@@ -35,52 +32,44 @@ const Formfield = ({ formdata, change, id }) => {
         );
         break;
 
+      case 'select':
+        formTemplate = (
+          <div className="formBlock">
+            {formdata.showlabel ? (
+              <div className="label_inputs">{formdata.config.label}</div>
+            ) : null}
+            <select
+              value={formdata.value}
+              onBlur={event => change({ event, id, blur: true })}
+              onChange={event => change({ event, id })}>
+              <option value="">Select one</option>
+              {formdata.config.options.map(item => (
+                <option key={item.key} value={item.key}>
+                  {item.value}
+                </option>
+              ))}
+            </select>
+            {showError()}
+          </div>
+        );
+        break;
 
-        case('select'):
-                formTemplate = (
-                    <div className="formBlock">
-                        { formdata.showlabel ? 
-                            <div className="label_inputs">{formdata.config.label}</div>
-                        :null}
-                        <select
-                            value={formdata.value}
-                            onBlur={(event)=> change({event,id,blur:true})}
-                            onChange={(event)=> change({event,id}) }
-                        >
-                            <option value="">Select one</option>
-                            {
-                                formdata.config.options.map(item=>(
-                                    <option 
-                                        key={item.key} 
-                                        value={item.key}
-                                    >
-                                        {item.value}
-                                    </option>
-                                ))
-                            }
-                        </select>
-                        {showError()}
-                    </div>
-                )
-            break;
-
-
-            case('textarea'):
-            formTemplate = (
-                <div className="formBlock">
-                    { formdata.showlabel ? 
-                        <div className="label_inputs">{formdata.config.label}</div>
-                    :null}
-                    <textarea
-                        {...formdata.config}
-                        value={formdata.value}
-                        onBlur={(event)=> change({event,id,blur:true})}
-                        onChange={(event)=> change({event,id}) }
-                    />
-                    {showError()}
-                </div>
-            )
-            break;
+      case 'textarea':
+        formTemplate = (
+          <div className="formBlock">
+            {formdata.showlabel ? (
+              <div className="label_inputs">{formdata.config.label}</div>
+            ) : null}
+            <textarea
+              {...formdata.config}
+              value={formdata.value}
+              onBlur={event => change({ event, id, blur: true })}
+              onChange={event => change({ event, id })}
+            />
+            {showError()}
+          </div>
+        );
+        break;
       default:
         formTemplate = null;
     }

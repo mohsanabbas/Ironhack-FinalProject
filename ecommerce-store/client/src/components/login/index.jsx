@@ -10,7 +10,9 @@ const RegisterLogin = () => {
           <div className="left">
             <h1>GET AN ACCOUNT NOW</h1>
             <p>
-            Creating an account is easy and has many advantages. Enjoy the benefits of having your personal details saved, and being able to check out with one click.
+              Creating an account is easy and has many advantages. Enjoy the
+              benefits of having your personal details saved, and being able to
+              check out with one click.
             </p>
             <MyButton
               type="default"
@@ -22,14 +24,16 @@ const RegisterLogin = () => {
             />
           </div>
           <div className="right">
-          <h2>REGISTERED CUSTOMERS</h2>
-          <p>If you have a Suiting account, please enter your email and password.</p>
-          <Login />
-          </div>
+            <h2>REGISTERED CUSTOMERS</h2>
+            <p>
+              If you have a Suiting account, please enter your email and
+              password.
+            </p>
+            <Login />
           </div>
         </div>
       </div>
-    
+    </div>
   );
 };
 
