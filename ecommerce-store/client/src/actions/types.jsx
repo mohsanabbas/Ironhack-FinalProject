@@ -13,4 +13,6 @@ export const GET_PRODUCTS_TO_SHOP ='get_products_to_shop';
 export const CLEAR_PRODUCT = 'clear_product';
 export const ADD_PRODUCT = 'add_product';
 export const ADD_DETAIL = 'add_detail';
-export const ADD_BRAND = 'add_brand'; 
+export const ADD_BRAND = 'add_brand';
+export const GET_PRODUCT_DETAIL ='get_product_detail';
+export const CLEAR_PRODUCT_DETAIL = 'clear_product_detail'; 
