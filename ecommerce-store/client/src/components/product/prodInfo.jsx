@@ -74,7 +74,7 @@ const ProdInfo = props => {
 
   const detail = props.detail;
   return (
-    <div className="button_container">
+    <div>
       <h1>
         {detail.brand.name} {detail.name}{' '}
       </h1>

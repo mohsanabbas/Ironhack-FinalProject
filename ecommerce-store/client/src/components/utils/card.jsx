@@ -6,15 +6,7 @@ class Card extends Component {
     if (images.length > 0) {
       return images[0].url;
     } else {
-      const items = [
-        '/images/featured/working.jpg',
-        '/images/featured/IMG1-1.jpg',
-        '/images/featured/IMG.jpg',
-        '/images/featured/IMG4.jpg',
-        '/images/featured/IMG3.jpg'
-      ];
-      let item = items[Math.floor(Math.random() * items.length)];
-      return item;
+      return `/images/featured/no-image.jpg`;
     }
   }
 
