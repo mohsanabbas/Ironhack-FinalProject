@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageTop from '../utils/page_top';
 import { connect } from 'react-redux';
 import ProdImg from './prodImg';
+import { addToCart } from '../../actions/user_actions';
 import {
   getProductDetail,
   clearProductDetail
@@ -9,14 +10,25 @@ import {
 import ProdInfo from './prodInfo';
 
 class ProdcutPage extends Component {
-  componentDidMount() {
+  componentDidMount(){
     const id = this.props.match.params.id;
-    //  console.log(id)
-    this.props.dispatch(getProductDetail(id));
-  }
+    this.props.dispatch(getProductDetail(id)).then(response=>{
+        if(!this.props.products.prodDetail){
+            this.props.history.push('/');
+        }
+    })
+}
   componentWillUnmount() {
     this.props.dispatch(clearProductDetail());
   }
+
+  addToCartHandler(id){
+    // console.log(id)
+    this.props.dispatch(addToCart(id))
+
+  }
+
+
 
   render() {
     return (
