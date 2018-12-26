@@ -4,11 +4,12 @@ import faCompass from '@fortawesome/fontawesome-free-solid/faCompass';
 import faPhone from '@fortawesome/fontawesome-free-solid/faPhone';
 import faClock from '@fortawesome/fontawesome-free-solid/faClock';
 import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
-const Footer = () => {
+const Footer = ({data}) => {
   const getTheDate = () => {
     return new Date().getFullYear();
   };
   return (
+    data.siteData ?
     <footer className="bck_b_dark">
       <div className="container">
         <div className="logo">SUITING</div>
@@ -20,28 +21,28 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faCompass} className="icon" />
                 <div className="nfo">
                   <div>Address</div>
-                  <div>Paulista 1301</div>
+                  <div>{data.siteData[0].address}</div>
                 </div>
               </div>
               <div className="tag">
                 <FontAwesomeIcon icon={faPhone} className="icon" />
                 <div className="nfo">
                   <div>Phone</div>
-                  <div>2345-22222</div>
+                  <div>{data.siteData[0].phone}</div>
                 </div>
               </div>
               <div className="tag">
                 <FontAwesomeIcon icon={faClock} className="icon" />
                 <div className="nfo">
                   <div>Working hours</div>
-                  <div>Mon-Sun/ 9am-8pm</div>
+                  <div>{data.siteData[0].hours}</div>
                 </div>
               </div>
               <div className="tag">
                 <FontAwesomeIcon icon={faEnvelope} className="icon" />
                 <div className="nfo">
                   <div>Email</div>
-                  <div>info@suiting.com</div>
+                  <div>{data.siteData[0].email}</div>
                 </div>
               </div>
             </div>
@@ -61,6 +62,7 @@ const Footer = () => {
         Developed by Mohsan Abbas &copy; Copyright {getTheDate()}
       </div>
     </footer>
+     :null
   );
 };
 export default Footer;
