@@ -9,7 +9,7 @@ const async = require('async');
 
 const app = express();
 mongoose.connect(
-    process.env.DATABASE, {
+    process.env.MONGODB_URI, {
       useNewUrlParser: true
     }
   ).then((x) => {
