@@ -1,7 +1,7 @@
 # Ironhack-FinalProject
 ## Ecommerce-Store
 ## Link to Deployed Applicatioin on Heroku
-[This is the link to deployed project click here access](https://tranquil-caverns-27579.herokuapp.com/)
+[This is the link to deployed project click here to access](https://tranquil-caverns-27579.herokuapp.com/)
 ### Admin credentials to see admin accessible routes 
 mohsan@mail.com
 Password 12345678
