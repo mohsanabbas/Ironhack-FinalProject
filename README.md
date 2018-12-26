@@ -3,10 +3,9 @@
 ## Link to Deployed Applicatioin on Heroku
 [Suiting deployed here](https://tranquil-caverns-27579.herokuapp.com/)
 ### Admin credentials to see admin accessable routes 
--mohsan@mail.com
--Password 12345678
--started 3rd December 2018
--Final submission date 14 Dec
+mohsan@mail.com
+Password 12345678
+
 ### OVERVIEW & GOALS
 This is a Men Suits selling application, which have various brands.
 A suit can have various size different colors different materials and much more, In this
