@@ -2,15 +2,16 @@
 ## Ecommerce-Store
 ## Link to Deployed Applicatioin on Heroku
 [Suiting deployed here](https://tranquil-caverns-27579.herokuapp.com/)
-### Admin credentials to see admin accessable routes 
+### Admin credentials to see admin accessible routes 
 mohsan@mail.com
 Password 12345678
 
 ### OVERVIEW & GOALS
-This is a Men Suits selling application, which have various brands.
-A suit can have various size different colors different materials and much more, In this
-application we are going to give user full experience of search the product available on the store. User will be able to filter suits by price range by brands name, colors and size. main layout will be consist on a images slider, in other section we will be showing best selling products it will be filtering from database by  checking how many times the product been sold, there will be another section of new arrivals which also will be filtered from database. by the timestamp property of mongo, under each product we will be assigning a button which will open the product details route, and ofcourse add to cart button which will allow user to add product to buying list. at the end of this page will be footer.
+This is a Men Suits selling is a fullstack Single Page Application, developed using MERN stack, mongoDb, Express.js, React.js, Node.js.
+In This application we are dealing with suiting business a suit can have various size different colors different materials and much more,
+application is giving user full experience of search the product available on the store. User will be able to filter suits by price range by brands name, colors and size. main layout will be consist on a images slider, in other section we will be showing best selling products it will be filtering from database by  checking how many times the product been sold, there will be another section of new arrivals which also will be filtered from database. by the timestamp property of mongo, under each product we will be assigning a button which will open the product details route, and ofcourse add to cart button which will allow user to add product to buying list. show the total amount and then checkout using paypal.
 there will be protected routes when user loging it will have different nav links, and ofcourse dashboard, dashboard will have user information.
+admin have different roles to add new products in store, update site information, add new brands to the store,
 then there will be Suits/ product route where will be showing our shop and all the filtering will be done we will use material UI for this , checkbox filtering this is the main part of this application.
 
 
@@ -34,9 +35,8 @@ information
 information, add new product including picture upload, and manage some of the product
 categories.
 #### SPECIFICATIONS
-This is pretty big project with the client side and server side api, in client side basically will be
-react.js, redux and some other liberaries, and server side will be including express.js, node.js and mongoDB, and of course some
-libraries to assist with picture uploading, user authentication , password hashing, nodemailer, etc.
+This is pretty big project with the client side and server side api, in client side basically used
+react.js, redux  material ui, paypal connecter, and server side will be including express.js, node.js and mongoDB, and with picture uploading using cloudinary, user authentication , password hashing, , etc.
 #### MILESTONES
 #### Server Side
 To get server up and running with functional API , there will be 5  models schemas, brand,
