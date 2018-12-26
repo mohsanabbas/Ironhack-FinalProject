@@ -1,5 +1,9 @@
 # Ironhack-FinalProject
 ## Ecommerce-Store
+## Link to Deployed Applicatioin on Heroku
+[a link](https://tranquil-caverns-27579.herokuapp.com/)
+### Admin credentials to see admin accessable routes 
+mohsan@mail.com Password 12345678
 started 3rd December 2018
 Final submission date 14 Dec
 ### OVERVIEW & GOALS
