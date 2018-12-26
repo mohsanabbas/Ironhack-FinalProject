@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.use(express.static('client/build'))
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
@@ -525,20 +525,36 @@ app.get('/api/site/site_data', (req, res) => {
   });
 });
 
-app.post('/api/site/site_data',auth,admin,(req,res)=>{
-  Site.findOneAndUpdate(
-      { name: 'Site'},
-      { "$set": { siteInfo: req.body }},
-      { new: true },
-      (err,doc )=>{
-          if(err) return res.json({success:false,err});
-          return res.status(200).send({
-              success: true,
-              siteInfo: doc.siteInfo
-          })
+app.post('/api/site/site_data', auth, admin, (req, res) => {
+  Site.findOneAndUpdate({
+      name: 'Site'
+    }, {
+      "$set": {
+        siteInfo: req.body
       }
+    }, {
+      new: true
+    },
+    (err, doc) => {
+      if (err) return res.json({
+        success: false,
+        err
+      });
+      return res.status(200).send({
+        success: true,
+        siteInfo: doc.siteInfo
+      })
+    }
   )
 })
+
+// DEFAULT 
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  app.get('/*', (req, res) => {
+    res.sendfile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+  })
+}
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
